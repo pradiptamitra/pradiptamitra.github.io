@@ -1,0 +1,5 @@
+title: Your Notes
+description: Technical notes and blog posts
+markdown: kramdown
+timezone: America/New_York
+permalink: /:categories/:year/:month/:day/:title/
