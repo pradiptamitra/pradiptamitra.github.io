@@ -159,11 +159,11 @@ Stepping down from the literary ramparts, I felt I'd do a small experiment on th
 
 ![Standard Bengali handwriting](/assets/images/IMG_5318.jpeg)
 
-*Standard Bengali image*
+<p style="text-align: center"><em>Standard Bengali image</em></p>
 
 ![Mixed mode Bengali handwriting](/assets/images/IMG_5319.jpeg)
 
-*Mixed mode Bengali image*
+<p style="text-align: center"><em>Mixed mode Bengali image</em></p>
 
 On the standard Bengali, Sarvam is rather good (just one word wrong — অধিবেশক — which means nothing):
 
@@ -175,7 +175,7 @@ On the standard Bengali, Sarvam is rather good (just one word wrong — অধ�
 বাধ্য হলাম ।
 </pre>
 
-Gemini is totally correct:
+Gemini is essentially correct (althoug it fixes a minor typo I made):
 
 <pre>
 গাছ থেকে নেমে এসে বাঁদরটি বলল, "তুমি কে? বললেই আমাকে নামতে হবে কেন?"
