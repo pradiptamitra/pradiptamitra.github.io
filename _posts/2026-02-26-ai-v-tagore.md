@@ -3,9 +3,7 @@ title: "AI v. Tagore"
 author: "Pradipta Mitra"
 ---
 
-# **AI v. Tagore**
-
-Sarvam AI has garnered well-deserved attention for their recent sequence of "[drops](https://x.com/pratykumar/status/2018027623973278107?s=46)" of ML models for Indic languages (Bangla included). I've used and recommended their amazing [dubbing model](https://www.sarvam.ai/blogs/sarvam-dub).
+Sarvam AI has garnered well-deserved attention for their recent sequence of "[drops](https://x.com/pratykumar/status/2018027623973278107?s=46)" of ML models for Indic languages (Bangla included). I've used and recommended their amazing [dubbing model](https://www.sarvam.ai/blogs/sarvam-dub) myself.
 
 The growth of sovereign models is to be lauded — but as the wise say, there is no growth without pain (Aristotle? Andrew Huberman? I forget). So I decided to dole out some, and confront their OCR model with the 800 pound gorilla: the handwritten manuscripts of Rabindranath Tagore, the great poet of Bengal. These are filled with corrections and overwriting, the crossed-out words linked and transformed into drawings.
 
