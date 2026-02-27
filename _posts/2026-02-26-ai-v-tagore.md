@@ -1,18 +1,17 @@
 ---
 title: "AI v. Tagore"
+author: "Pradipta Mitra"
 ---
 
 # **AI v. Tagore**
 
-Sarvam AI has garnered well-deserved attention for their recent sequence of "[drops](https://x.com/pratykumar/status/2018027623973278107?s=46)" of ML models for Indic Languages (Bangla included). I have used their dubbing model which works swimmingly.
+Sarvam AI has garnered well-deserved attention for their recent sequence of "[drops](https://x.com/pratykumar/status/2018027623973278107?s=46)" of ML models for Indic languages (Bangla included). I've used and recommended their amazing [dubbing model](https://www.sarvam.ai/blogs/sarvam-dub).
 
-The growth of sovereign models is to be lauded, but as the wise say, there is no growth without pain (Aristotle? Andrew Huberman? I forget).
+The growth of sovereign models is to be lauded — but as the wise say, there is no growth without pain (Aristotle? Andrew Huberman? I forget). So I decided to dole out some, and confront their OCR model with the 800 pound gorilla: the handwritten manuscripts of Rabindranath Tagore, the great poet of Bengal. These are filled with corrections and overwriting, the crossed-out words linked and transformed into drawings.
 
-So I decided to dole out some, and confront their OCR model with that veritable monster, the handwritten manuscripts of Rabindranath Tagore, the great poet of Bengal – these are filled with corrections and overwriting, the crossed-out words linked and transformed into drawings.
+In their [blog](https://www.sarvam.ai/blogs/Sarvam-vision) introducing the model, Sarvam reports it beating Gemini 2.0 Pro and others — 92.61 vs 90.79 character accuracy on Bengali. I took Gemini as the natural second model to run these through.
 
 ![Tagore manuscript](/assets/images/Tagore_manuscript6_c.jpg)
-
-In their blog introducing the OCR model, [https://www.sarvam.ai/blogs/Sarvam-vision](https://www.sarvam.ai/blogs/Sarvam-vision), Sarvam reports it beating out Gemini 3 Pro (and other models) – 92.61 vs 90.79 accuracy for Bengali. So I took Gemini as the second model to run these through.
 
 ---
 
@@ -60,7 +59,7 @@ Gemini doesn't appear to have a separate OCR model. You simply provide the image
 Gemini started off with:
 "This image is a famous example of **Rabindranath Tagore's** manuscript art. He famously turned his crossed-out words and corrections into flowing, organic doodles…" before providing the transcription and then a historical exposition about the song. This is concerning, in a manner of speaking, because one wonders if it simply has the poem in its parametric memory.
 
-Gemini's output is better. It starts out very well:
+Gemini's output starts out very well:
 
 <pre>
 বিধির বাঁধন কাটবে তুমি

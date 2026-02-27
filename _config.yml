@@ -1,5 +1,5 @@
-title: Your Notes
-description: Technical notes and blog posts
+title: Bong Context
+description: Technical notes by <a href="https://www.linkedin.com/in/pradipta-p-mitra/">Pradipta Mitra</a>
 markdown: kramdown
 timezone: America/New_York
 permalink: /:categories/:year/:month/:day/:title/

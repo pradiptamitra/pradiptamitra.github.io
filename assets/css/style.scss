@@ -3,6 +3,8 @@
 @import "{{ site.theme }}";
 
 img {
-  max-width: 500px;
-  height: auto;
+  max-width: 500px !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
 }
