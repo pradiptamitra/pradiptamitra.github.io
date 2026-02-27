@@ -72,7 +72,7 @@ Gemini's transcription starts out well:
 তোমাদের এমন অভিমান!
 </pre>
 
-But it misses the crucial poetic gesture. After using এমন (meaning "such" – e.g. "such strength") thrice, the Bard uses the variation এমনি in the last line. Gemini keeps using এমন.
+But it misses a crucial poetic gesture. After using এমন (meaning "such" – e.g. "such strength") thrice, the Bard uses the variation এমনি in the last line. Gemini keeps using এমন.
 
 Is this simply Gemini reciting a poem it knows? The transcription errors suggest otherwise:
 
@@ -143,13 +143,13 @@ The output is worse after that:
 শ্রাবণ দিনের ঘন মেঘ শুনে তার ধ্বনি একি আজিকে হলে বিস্মৃতি তন্দ্রাতলের বৈরাগিনী।
 </pre>
 
-This is not correct, but it's more coherent. And interestingly, from the perspective of the language model prior point made earlier, it can be described stylistically as **Pseudo-Tagore** — perhaps satisfactory to a mere AGI, but not to me (you see what I did there?). Allow me to find some fault.
+This is not correct, but it's more coherent. And interestingly, it can be described stylistically as **Pseudo-Tagore** — perhaps satisfactory to a mere AGI, but not to I (you see what I did there?). If you will allow me...
 
 মোর পুরাতন দিনের পাখি ডাক শুনে তার উঠল ডাকি — becomes — শ্রাবণ দিনের ঘন মেঘ শুনে তার ধ্বনি একি
 
 The funny part is শ্রাবণ — the second month of the rainy season, a word Tagore was extremely fond of. Good try, Gemini. But if you read what you already wrote, there is বসন্ত (spring) sitting right in the middle. He's not going to mix up seasons like that.
 
-Also কে ওগো রূপ-বিনোদিনী বকুলের এই চামেলিরে – it's not বিনোদিনী (She who delights), rather বিদেশিনী (She, the foreigner). If you were paying attention, you would realize that the opening verse — "My heart believes: I know you" — obviously means the poet is not so sure he knows her, and thus it *has* to be বিদেশিনী. Add to this the botanical fact that the addressee is the চামেলি flower, a Himalayan Jasmine not native to Bengal, and you have what lawyers call dispositive evidence. I know, I know — me egghead.
+Also কে ওগো রূপ-বিনোদিনী বকুলের এই চামেলিরে – it's not বিনোদিনী (She who delights), rather বিদেশিনী (She, the foreigner). If you were paying attention, you would realize that the opening verse — "My heart believes: I know you" — obviously means the poet is not so sure he knows her, and thus it *has* to be বিদেশিনী. Add to this the botanical fact that the addressee is the চামেলি flower, a Himalayan Jasmine not native to Bengal, and you have what lawyers call dispositive evidence. Mic drop.
 
 ---
 
