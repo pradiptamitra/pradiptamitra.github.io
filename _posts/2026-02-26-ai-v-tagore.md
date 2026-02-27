@@ -194,17 +194,19 @@ On the mixed mode image, Sarvam is all over the place:
 
 Some good parts though — it nailed two landmines: কপিবর (The august Monkey) and চাটকানা (slap).
 
-Gemini, on the other hand, is surprisingly good:
+Gemini, on the other hand, does better:
 
 <pre>
-গাছ থেকে নেমে এসে শাখামৃগ কহিলেন, "তুই কিডা? বুরলে পরে আমারে প্রনতি হবি কেন?" অবিমৃষ্যকারী কপিকে মুখের ওপর চাটকানা মারতে বাধ্য হলেম।
+গাছ থেকে নেমে এসে শাখামৃগ কহিলেন, "তুই কিডা? বুরলে পরে আমারে প্রনতি হবি কেন?"
+
+অবিমৃষ্যকারী কপিকে মুখের ওপর চাটকানা মারতে বাধ্য হলেম।
 </pre>
 
 Pretty good — but there are three mistakes. The most interesting one is the replacement of dialect নামলি with Sanskrit প্রনতি (perhaps nudged to the top of the prior by similar-looking words in the surrounding text).
 
-The experiment is a small one, but the pattern is clear: the language prior is not just a background condition — it actively shapes what a model sees. OCR is not purely vision. It never was.
+The experiment is a small one, but the pattern is clear: the language prior actively shapes what a model sees.
 
-Finally, congratulations to the Sarvam team for a great launch. As the Upanishads say, idaṁ sarvam (Sarvam is Here). Onward!
+Finally, congratulations to the Sarvam team for a great launch. As the Upanishads say, idaṁ sarvam (Here (is) Sarvam). Onward!
 
 ---
 
