@@ -6,13 +6,13 @@ title: "AI v. Tagore"
 
 Sarvam AI has garnered well-deserved attention for their recent sequence of "[drops](https://x.com/pratykumar/status/2018027623973278107?s=46)" of ML models for Indic Languages (Bangla included). I have used their dubbing model which works swimmingly.
 
-The growth of Sovereign models are to be lauded, but as the wise say, their is no growth without pain (Aristotle? Andrew Huberman? I forget).
+The growth of sovereign models is to be lauded, but as the wise say, there is no growth without pain (Aristotle? Andrew Huberman? I forget).
 
-So I decided to dole out some, and confront their OCR model with that veritable monster, the handwritten manuscripts of Rabindranath Tagore, the great poet of Bengal – these are filled with corrections and overwriting, then these crossed-out words are linked and transformed into drawings.
+So I decided to dole out some, and confront their OCR model with that veritable monster, the handwritten manuscripts of Rabindranath Tagore, the great poet of Bengal – these are filled with corrections and overwriting, the crossed-out words linked and transformed into drawings.
 
 ![Tagore manuscript](/assets/images/Tagore_manuscript6_c.jpg)
 
-In their blog introducing the OCR model, [https://www.sarvam.ai/blogs/Sarvam-vision](https://www.sarvam.ai/blogs/Sarvam-vision), Sarvam reports it beating out Gemini 3 Pro (and other models) – 92.61 vs 90.79 accuracy for Bengali. So I look Gemini as the second model I'll run these through.
+In their blog introducing the OCR model, [https://www.sarvam.ai/blogs/Sarvam-vision](https://www.sarvam.ai/blogs/Sarvam-vision), Sarvam reports it beating out Gemini 3 Pro (and other models) – 92.61 vs 90.79 accuracy for Bengali. So I took Gemini as the second model to run these through.
 
 ---
 
@@ -55,7 +55,7 @@ Seems like autoregressive drift: once a few early tokens are incorrect, subseque
 
 ### **Gemini Output**
 
-Gemini doesn't appear to have separate OCR model. You simply provide the image to the usual Gemini chat interface and ask it to read it.
+Gemini doesn't appear to have a separate OCR model. You simply provide the image to the usual Gemini chat interface and ask it to read it.
 
 Gemini started off with:
 "This image is a famous example of **Rabindranath Tagore's** manuscript art. He famously turned his crossed-out words and corrections into flowing, organic doodles…" before providing the transcription and then a historical exposition about the song. This is concerning, in a manner of speaking, because one wonders if it simply has the poem in its parametric memory.
@@ -76,7 +76,7 @@ Gemini's output is better. It starts out very well:
 তোমাদের এমন অভিমান!
 </pre>
 
-Almost correct. But it misses the crucial poetic gesture. After using এমন (meaning "such" – e.g. "such strength") thrice, the Bard uses the the variation এমনি in the last line. Gemini keeps using এমন.
+Almost correct. But it misses the crucial poetic gesture. After using এমন (meaning "such" – e.g. "such strength") thrice, the Bard uses the variation এমনি in the last line. Gemini keeps using এমন.
 
 Ok, but my question remains. Is this simply Gemini reciting a poem it knows?
 
@@ -94,7 +94,7 @@ This is incorrect, should be:
 তোরাও   বাঁচবি নে রে,
 </pre>
 
-I don't think Gemini is using parametric memory. However, I suspect very much that it's recitation of the context and author of the poem is helping it tap into the right Language Model prior for decoding a Tagore poem.
+I don't think Gemini is using parametric memory. However, I strongly suspect that its identification of the poem's context and author is helping it tap into the right language model prior for Tagore.
 
 ## **Round 2: A Less Common Poem**
 
@@ -121,7 +121,7 @@ This allows a clearer test of whether a model reads the image or defaults to a c
 
 ### **Sarvam Output**
 
-First, up, Sarvam. Unfortunately equally poor. Starts making mistakes on the 4th word and then its all downhill.
+First up, Sarvam. Unfortunately equally poor. Mistakes start on the 4th word and then it's all downhill.
 
 <pre>
 মন যে বলে চিন চিনি
@@ -153,13 +153,13 @@ This is not correct, but it's more coherent. And interestingly from the perspect
 
 The funny part is the incorrect output শ্রাবণ – the second month of the rainy season. Tagore was extremely fond of this word – and of the rainy season. Good try, Gemini. But, but, but … if you read what you already wrote there is বসন্ত (spring) smack dab in the middle (in the wrong place, as it happens). Come on man, he's not going to mix up seasons like that\!
 
-Also কে ওগো রূপ-বিনোদিনী বকুলের এই চামেলিরে – its not বিনোদিনী (She who delights), rather বিদেশিনী (She, the foreigner). If you were paying attention, my friend, you would realize that the starting verse – "My heart believes: I know you" obviously means that the poet is in fact not so sure he knows her, and thus it *has* to be বিদেশিনী. Add to this the botanical fact that the addresee is the চামেলি flower, a Himalayan Jasmine not native to Bengal, and you have evidence that lawyers call dispositive. I know, me egghead.
+Also কে ওগো রূপ-বিনোদিনী বকুলের এই চামেলিরে – it's not বিনোদিনী (She who delights), rather বিদেশিনী (She, the foreigner). If you were paying attention, my friend, you would realize that the starting verse – "My heart believes: I know you" obviously means that the poet is in fact not so sure he knows her, and thus it *has* to be বিদেশিনী. Add to this the botanical fact that the addressee is the চামেলি flower, a Himalayan Jasmine not native to Bengal, and you have evidence that lawyers call dispositive. I know, me egghead.
 
 ---
 
 ## **Language Model**
 
-Climbing down from my high horse, I felt that I'd do a a small experiment on this Language Model point. I wrote, in my handwriting, a ridiculous story about a talking monkey, but with two variants:
+Climbing down from my high horse, I felt that I'd do a small experiment on this Language Model point. I wrote, in my handwriting, a ridiculous story about a talking monkey, but with two variants:
 
 1. First – standard bengali
 2. Second – a hotchpotch of highly Sanskritized words and idiomatic expressions of at least two dialects (let's call it "mixed mode").
@@ -205,11 +205,11 @@ Gemini is actually surprisingly good.
 
 গাছ থেকে নেমে এসে শাখামৃগ কহিলেন, "তুই কিডা? বুরলে পরে আমারে প্রনতি হবি কেন?" অবিমৃষ্যকারী কপিকে মুখের ওপর চাটকানা মারতে বাধ্য হলেম।
 
-Pretty good, but there are three mistakes. The most interesting one being the replacement of dialect নামলি with sanskrit প্রনতি (perhaps pushed the top of the prior by the occurrence of similar words in the text).
+Pretty good, but there are three mistakes. The most interesting one being the replacement of dialect নামলি with Sanskrit প্রনতি (perhaps nudged to the top of the prior by similar-looking words in the surrounding text).
 
-Overall, I think its a pretty interesting illustration of the how the language prior effects visual decoding.
+Overall, I think it's a pretty interesting illustration of how the language prior affects visual decoding.
 
-Finally, as the Upanishads say, Idam Sarvam (ইদম সর্বম)। Congrats to the Sarvam team. Onward\!
+Finally, congratulations to the Sarvam Team for a great launch. As the Upanishads say idaṁ sarvam (Sarvam is Here). Onward\!
 
 ---
 
