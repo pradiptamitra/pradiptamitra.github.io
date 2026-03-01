@@ -1,6 +1,7 @@
 ---
 title: "AI v. Tagore"
 author: "Pradipta Mitra"
+
 ---
 
 Sarvam AI has garnered well-deserved attention for their recent sequence of "[drops](https://x.com/pratykumar/status/2018027623973278107?s=46)" of ML models for Indic languages (Bangla included). I've used and recommended their amazing [dubbing model](https://www.sarvam.ai/blogs/sarvam-dub) myself.
