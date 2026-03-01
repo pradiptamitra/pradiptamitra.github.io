@@ -147,7 +147,7 @@ This is not correct, but it's more coherent. And interestingly, it can be descri
 
 মোর পুরাতন দিনের পাখি ডাক শুনে তার উঠল ডাকি — becomes — শ্রাবণ দিনের ঘন মেঘ শুনে তার ধ্বনি একি
 
-The funny part is শ্রাবণ — the second month of the rainy season, a word Tagore was extremely fond of. Good try, Gemini. But if you read what you already wrote, there is বসন্ত (spring) sitting right in the middle. He's not going to mix up seasons like that.
+The funny part is শ্রাবণ — the second month of the rainy season, a word Tagore was extremely fond of. Good try, Gemini. But if you read what you already wrote, there is বসন্ত (spring) sitting right in the middle. Come on man, he's not going to mix up seasons like that.
 
 Also কে ওগো রূপ-বিনোদিনী বকুলের এই চামেলিরে – it's not বিনোদিনী (She who delights), rather বিদেশিনী (She, the foreigner). If you were paying attention, you would realize that the opening verse — "My heart believes: I know you" — obviously means the poet is not so sure he knows her, and thus it *has* to be বিদেশিনী. Add to this the botanical fact that the addressee is the চামেলি flower, a Himalayan Jasmine not native to Bengal, and you have what lawyers call dispositive evidence. Mic drop.
 
@@ -202,7 +202,7 @@ Gemini, on the other hand, does better:
 অবিমৃষ্যকারী কপিকে মুখের ওপর চাটকানা মারতে বাধ্য হলেম।
 </pre>
 
-Pretty good — but there are three mistakes. The most interesting one is the replacement of dialect নামলি with Sanskrit প্রনতি (perhaps nudged to the top of the prior by similar-looking words in the surrounding text).
+Pretty good — but there are three mistakes. The most interesting one is the replacement of dialect নামতি with Sanskrit প্রনতি (perhaps nudged to the top of the prior by similar-looking words in the surrounding text).
 
 The experiment is a small one, but the pattern is clear: the language prior actively shapes what a model sees.
 
