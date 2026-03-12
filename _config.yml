@@ -4,3 +4,5 @@ markdown: kramdown
 timezone: America/New_York
 permalink: /:categories/:year/:month/:day/:title/
 theme: jekyll-theme-hacker
+kramdown:
+  math_engine: mathjax
