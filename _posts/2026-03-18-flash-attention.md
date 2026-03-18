@@ -2,7 +2,7 @@
 layout: post
 title: "Flash Attention in a Jiffy"
 author: "Pradipta Mitra"
-date: 2026-03-11
+date: 2026-03-18
 ---
 
 To celebrate the release of [Flash Attention 4](https://arxiv.org/abs/2603.05681), I
