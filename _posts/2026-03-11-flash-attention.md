@@ -15,8 +15,10 @@ this out minimally and say we have $N$ tokens, represented by vectors $x_1, \ldo
 which we can arrange as a matrix $X \in \mathbb{R}^{N \times d}$ (here $d$ is the
 "embedding" dimension of the token vectors).
 
-Now the idea of attention is that you compute the affinities between the tokens, and
-then use these affinities to compute a weighted sum of the token vectors as a *deeper*
+Now the idea of attention is that you:
+
+1. compute the affinities between the tokens
+2. use these affinities to compute a weighted sum of the token vectors as a *deeper*
 representation of the tokens (thus "deep learning").
 
 Since we are talking vectors, the natural way to compute affinities is via the dot
@@ -33,7 +35,7 @@ All rather neat.
 
 ## Attention Proper
 
-In reality, we have three matrices, queries $Q$, keys $K$, and values $V$, all  $\in \mathbb{R}^{N \times d}$ (simplifying somewhat). The affinities are computed between $Q$ and $K$, and then used compute the weighted sum of $V$. Before the weighted sum, one invokes the dark arts of deep learning, and passes the "affinity matrix" through the softmax function.
+In reality, we have three matrices, queries $Q$, keys $K$, and values $V$, all  $\in \mathbb{R}^{N \times d}$ (simplifying somewhat). The affinities are computed between $Q$ and $K$, and then used to compute the weighted sum of $V$. Before the weighted sum, one passes the "affinity matrix" through the softmax function (this being a ritual incantation of deep learning).
 
 Thus, we have:
 
@@ -51,7 +53,7 @@ $$
 softmax(x)_i = \frac{e^{x_i}}{\sum_j e^{x_j}}
 $$
 
-So every entry is scaled up by the exponent and then normalized by the sum of the exponents. This means that the rows of output $P$ can be seen as probability distributions.
+So every entry is scaled up by the exponent and then normalized by the sum of the exponents. 
 
 ## Efficiency Concerns
 One problem with this calculation is the $N \times N$ intermediate matrices $S$ and $P$. In modern LLMs, $N$ (which is the sequence length) can be quite large (e.g. $10000$ quite easily). "Materializing" (writing out) these matrices to GPU's main memory (HBM) is expensive.
@@ -66,7 +68,7 @@ Flash Attention solves this by redesigning the computation so that the intermedi
 
 
 ## Dijkstra's Ghost
-Dijkstra, implores us to encapsulate logic to hide complexity and avoid over-optimization (in [The Humble Programmer](https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html), [A Parable](https://www.cs.utexas.edu/~EWD/transcriptions/EWD05xx/EWD594.html) and elsewhere). But we are destined not to have nice things. Once is a while life requires us to break the encapsulation and peek under the hood. 
+The immortal Edsger Dijkstra implores us to encapsulate logic to hide complexity and avoid over-optimization (in [The Humble Programmer](https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html), [A Parable](https://www.cs.utexas.edu/~EWD/transcriptions/EWD05xx/EWD594.html) and elsewhere). But we are destined not to have nice things -- once in a while life requires us to break the encapsulation and peek under the hood. 
 
 And so it is with Flash Attention. The trick is to optimize through the entire attention mechanism, instead of "respecting" the "API" of matrix multiplication. If we were to do the latter, we could use [tiling](https://www.linkedin.com/pulse/tiling-matrix-multiplication-heuristic-view-pradipta-mitra-mutpe/) to reduce the cost of $Q K^\top$ but that would have hardly made a dent (because the materialization would have remained).
 
@@ -82,7 +84,7 @@ O_i &= P_i V \quad &(1 \times N) \cdot (N \times d) \Rightarrow (1 \times d)
 \end{aligned}
 $$
 
-Limited to a row, we will be trying to avoid the materialization of the "large" ($1 \times N$) vectors (and over all rows avoid the $N \times N$ matrix).
+With this limited single row view, our goal is to avoid the materialization of the "large" ($1 \times N$) vectors (which translates, and over all rows, to the dreaded $N \times N$ matrices).
 
 Now the softmax function is:
 
@@ -124,11 +126,28 @@ $$
 }
 $$
 
-It's worth pointing that $O_i$ is *repeatedly* updated. The reason why we can ignore the cost of that is that being small, $O_i$ can be kept in SRAM/cache.
+It's worth pointing out that $O_i$ is *repeatedly* updated. Because $O_i$ is "small" and can be kept in SRAM/cache, this cost can be ignored.
 
 
-## Tiling (The full power of the memory hierarchy)
+## Tiling
+
+The algorithm above processes one row of $Q$ at a time, streaming over all of $K$ and $V$. This is already enough to avoid materializing $S$ and $P$. However, it fails to leverage the full power of the cache and of compute parallelism (threads).
+
+In practice, you want to process a *block* of $Q$ rows together, while simultaneously loading a block of $K$ and $V$ rows into SRAM. The reason these two ideas go together is that thread parallelism and cache efficiency point to the same structure: a block of threads working on a tile of $Q$ rows can all reuse the same block of $K$ and $V$ that was loaded into SRAM, amortizing that load across the whole thread block.
+
+Tiling also improves the memory *reads*: a block of $K$ and $V$ loaded into SRAM is reused across all $Q$ rows in the tile, reducing round-trips to HBM.
+
+The encapsulation break pays off here too: instead of isolated tiling of (say) $QK^\top$, the tile spans the entire fused operation, keeping both thread occupancy and SRAM usage in mind simultaneously.
+
+## Demo: Seeing the Memory Benefit on CPU
+
+The algorithm above is designed for GPUs, but the memory benefit can be observed on CPU too — [this companion repo](https://github.com/pradiptamitra/flashattn_demo) has a plain C++20 implementation of both baseline and flash-style attention. CUDA kernels are powerful but hard to read; C++ on CPU makes the mechanism easy to read by mere mortals (in this case, perhaps even Dijkstra included).
+
+On CPU the algorithms are typically compute-bound, so runtime comparisons are not very meaningful. But the memory story is clear: at `seq_len=2048`, peak RSS drops from 38 MB (baseline) to 6 MB (flash) — the $\sim 6\times$ reduction you'd expect from avoiding the $N \times N$ score matrix.
+
+However, we do make a stab at making the runtime story a bit more exciting. The repo includes a memory bandwidth hog that runs in parallel and hammers shared memory. On Apple Silicon, CPU and GPU share unified memory, so this creates something resembling GPU-like memory pressure. With the hog running, baseline slows down sharply while flash-style stays comparatively steady — you can see it below.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lO83TVSMgZg" frameborder="0" allowfullscreen></iframe>
 
 
-
-
+Thanks for reading.
