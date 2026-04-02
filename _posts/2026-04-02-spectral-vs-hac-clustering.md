@@ -14,6 +14,8 @@ up to this plot.
 
 ---
 
+All code is available [here](https://github.com/pradiptamitra/clustering_threshold).
+
 ## Preface
 Having worked on spectral clustering and hierarchical agglomerative clustering, I've had this idea of comparing them on a natural probabilistic model for quite some time. But having a day job, this hasn't quite happened. Now thanks to LLM coding agents,
 an empirical study was relatively easy to set up. The agent du jour was codex,
