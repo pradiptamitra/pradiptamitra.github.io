@@ -121,8 +121,7 @@ the invalid intermediaries remain as tokens. This opens the possibility of nonse
 output at the generative phase -- the LLM *can* generate [e4 bd] followed by [e0 a6] (prefix of a Bengali character). If it does so, it can't be decoded, and we simply deal with it with hardcoded rules (e.g. dropping it, replacing with a filler character, etc). But one hopes
 that this would be (very) rare, since such sequences are never present in the training data.
 
-**Second**, it's possible that we don't form the [e4 bd a0] token at all. BPE stops after
-a certain number of merges, so relatively infrequent characters may have part of their characters formed into prefixes. 
+**Second**, it's possible that we never form the [e4 bd a0] token at all. BPE stops after a fixed number of merges, so an infrequent character may only have some of its bytes merged — enough to form a prefix like [e4 bd], but not the full character.
 
 Let's assume, for illustration, that tokenization stopped after the [e4 bd] merge. This is
 not the end of the world, since generation could still do the right thing by simply outputting [e4 bd] [a0] when appropriate. With enough training data, this is likely, but then again, the premise we started out with is that [e4 bd a0] token wasn't formed because it is *relatively* infrequent.
@@ -160,7 +159,7 @@ the following exercise has been to convince myself that BPE is actually rather r
 
 **Shared prefixes mean characters merge naturally.** Every Thai character
 starts with `e0 b8`. In any corpus with Thai text, the pair `(e0, b8)` has
-frequency equal to the *total count of all Thai characters* — which would naturally be very high in a corpus where the language even has modest representation. It merges early. After that, individual
+frequency equal to the *total count of all Thai characters* — which would naturally be very high in a corpus where the language has even modest representation. It merges early. After that, individual
 Thai characters complete naturally: `([e0 b8], xx)` merges whenever a specific
 Thai character appears often enough. Prefix sharing accelerates the "good"
 merges.
@@ -195,8 +194,7 @@ chimera-like constructions.
 
 
 ## Let's form a chimera
-Our goal is not to analyze those tokens in GPT-2. We want to a) define the requirement for chimera formation and b) be able to come up with *plausible* scenarios where this may occur which
-is semantically satisfactory.
+Our goal is not to analyze the chimeras of GPT-2. We want to a) define the requirement for chimera formation and b) be able to come up with semantically satisfactory, *plausible* scenarios where this may occur.
 
 
 To build out this construction I need two sets:
@@ -227,8 +225,7 @@ specific cluster of emoji. The ingredients:
 
 The visarga is a small mark that appears at the end of Indic words. 
 It represents a voiceless breath — the "-ah" in *namah* (as in *Om Namah
-Shivaya*) or the "-ih" in *shantih* (as in *Om Shanti Shanti Shantih*). It's
-formal, devotional, and rare outside of mantras.
+Shivaya*) or the "-ih" in *shantih* (as in *Om Shanti Shanti Shantih*).
 
 The Unicode Consortium placed each Indic script's visarga at the **same
 offset** within its block — position 0x03. The result:
@@ -280,12 +277,12 @@ These are relatively obscure emoji unlikely to be widely used and yet they conta
 
 Now we have the *plausible* construction where continuations such as नमः🪔, when aggregated
 across all Indic languages and all plausible emoji, exceed in count either the visarga or the
-🪔.
+🪔. Thus we get our chimera `[83 f0]` — the tail of the visarga fused to the head of the emoji. Voila!
 
 
 ## A parting shot -- by Cupid
-Having leaned heavily on high-Sanskrit words, I'd be remiss as a Bengali if I didn't invoke যাঃ / আঃ (jah/ah) -- Bengali exclamations that end with visarga, used to express coy irritation or a breathy sigh in romantic context. Does our emoji cluster contain anything that could be a reasonable continuation? Yeah, I think the folding hand fan 🪭 captures the essence of these utterances rather well. 
+Having leaned heavily on high-Sanskrit words, I'd be remiss as a Bengali if I didn't invoke যাঃ / আঃ (jah/ah) -- Bengali exclamations that end with visarga, and are typically used to express coy irritation or a breathy sigh in romantic context. Does our emoji cluster contain anything that could be a reasonable continuation? Yeah, I think the folding hand fan 🪭 captures the essence of these utterances rather well. 
 
-The end.
+The end 🪭.
 
 😁
