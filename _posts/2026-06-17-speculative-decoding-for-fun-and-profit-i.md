@@ -85,6 +85,8 @@ Is it though, in practice? Only experiments can tell:
 
 
 ## Experiments
+To reproduce, follow [this repo](https://github.com/pradiptamitra/speculative-sidecar).
+
 
 We take two target/draft pairs, both runnable locally on a Mac Studio:
 
