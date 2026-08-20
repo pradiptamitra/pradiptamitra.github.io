@@ -3,6 +3,8 @@ layout: post
 title: "Speculative Decoding for Fun and Profit II"
 author: "Pradipta Mitra"
 date: 2026-06-25
+series: specdecode
+part: 2
 ---
 
 In [Part I]({% post_url 2026-06-17-speculative-decoding-for-fun-and-profit-i %}) of this series of posts, we started exploring if the draft model in a speculative decoding setup can be leveraged for downstream tasks. Specifically, we proposed we could do this by appending a suffix prompt, only to the prompt for the draft model. Consider the specific case where the main task is document summarization, and the downstream task is to generate hashtags from that summary. Then the target model would receive the usual "summarize this document" prompt while the draft model would receive the prompt "summarize this document. then produce some hashtags".
@@ -22,6 +24,7 @@ In slightly more detail:
 3. Once the summary generation is complete, we unmask the suffix and hashtag generation proceeds normally.
 
 ![Masked attention during summary generation](/assets/images/spec-decode-masked-attention.svg)
+{: #masked-attention}
 
 *During summary generation the summary tokens attend to the document and instruction as usual, but skip the masked suffix. The suffix tokens themselves still attend backward — they are ordinary prefill tokens — they are merely hidden from the summary.*
 

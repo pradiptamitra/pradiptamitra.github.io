@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<small>{{ page.date | date: "%-d %B %Y" }}</small>
+<h1>{{ page.title }}</h1>
+
+<p class="view">by {{ page.author | default: site.author }}</p>
+
+{% if page.series == "specdecode" %}
+<p><strong>Speculative Decoding for Fun and Profit:</strong>
+{% if page.part == 1 %}Part I{% else %}<a href="{% post_url 2026-06-17-speculative-decoding-for-fun-and-profit-i %}">Part I</a>{% endif %} &middot;
+{% if page.part == 2 %}Part II{% else %}<a href="{% post_url 2026-06-25-speculative-decoding-for-fun-and-profit-ii %}">Part II</a>{% endif %} &middot;
+{% if page.part == 3 %}Part III{% else %}<a href="{% post_url 2026-08-18-speculative-decoding-for-fun-and-profit-iii %}">Part III</a>{% endif %}
+</p>
+{% endif %}
+
+{{ content }}
+
+{% if page.tags %}
+  <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
+{% endif %}

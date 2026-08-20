@@ -3,8 +3,9 @@ layout: post
 title: "Speculative Decoding for Fun and Profit I"
 author: "Pradipta Mitra"
 date: 2026-06-17
+series: specdecode
+part: 1
 ---
-
 
 Take a prompt summarizing a document:
 
