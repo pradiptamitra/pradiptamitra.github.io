@@ -78,7 +78,7 @@ Our setup differs from the paper's (a different model, a 20-candidate pool, trun
 
 Here is what happened over all 300 test queries:
 
-| Metric | Two full passes | Naive one pass |
+| Metric | Two-pass | Naive one pass |
 |---|---:|---:|
 | Mean nDCG@10 | 0.6712 | 0.6675 |
 | Mean Kendall tau versus two-pass | 1.000 | 0.816 |
@@ -103,7 +103,7 @@ Rather neat! But can we do even better?
 
 ## Fork the attention without caching
 
-A cleaner one-pass version would fork the attention appropriately. In effect, we do prefill on:
+A cleaner one-pass version would fork the attention appropriately. We'll call this the **branched** version. In effect, we do prefill on:
 
 ```text
 shared document prefix Query: N/A Query: [How do I blah?]
@@ -117,7 +117,7 @@ But pass in a custom attention matrix that masks the attention from the real que
 
 There is just one tensor and one forward pass. An attention mask prevents the branches from seeing each other. Each branch can read the shared prefix and its own preceding tokens. We also give the "real query" branch the positions it would have had immediately after the prefix, instead of the shifted positions implied by its location in the packed tensor.
 
-The actual function computed in all methods should be identical (two pass, KV cache and this one -- branched).
+The actual function computed in all methods should be identical (two-pass, KV cache and branched).
 
 Before looking at performance, here is the final quality comparison over all
 300 SciFact queries:
@@ -155,13 +155,17 @@ First we used `footprint -p <pid>` to measure the physical footprint of the prog
 
 In other words, the extra footprint associated with the algorithm itself is about 4 GiB for KV cache, versus about 1 GiB for the other two. A clear win for branched.
 
-We also did an in-process measurement, sampling the driver allocation (i.e. `torch.mps.driver_allocated_memory()`) with similar results:
+We also did an in-process measurement over 30 queries, sampling the driver allocation (i.e. `torch.mps.driver_allocated_memory()`) with similar results:
 
-| Method | Extra driver allocation |
-|---|---:|
-| Two-pass | 1.01 GiB |
-| KV cache | 2.41 GiB |
-| Branched | 1.01 GiB |
+| Method | Mean extra driver allocation | Worst query |
+|---|---:|---:|
+| Two-pass | 1.01 GiB | 1.01 GiB |
+| KV cache | 1.93 GiB | 4.04 GiB |
+| Branched | 1.01 GiB | 1.02 GiB |
+
+The KV cache's extra memory is also unpredictable. It ranged from about 1 GiB to about 4 GiB depending on the query, with the longest prompts the worst. Two-pass and branched took the same amount on every query.
+
+Interestingly, the saved prefix cache itself is only about 115 MiB, far too small to explain the gap. Most likely the cached computation carries extra overhead that the single branched pass avoids.
 
 
 
